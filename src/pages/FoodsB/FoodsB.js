@@ -1,41 +1,41 @@
 import React from 'react';
-
+import { useNavigate } from 'react-router-dom';
+import UseFood from '../Hooks/UseFood';
 const FoodsB = () => {
-    return (
-        <div>
-            <section class="p-4 lg:p-8 dark:bg-gray-800 text-gray-100">
-	<div class="container mx-auto space-y-12">
-		<div class="flex flex-col overflow-hidden rounded-md shadow-sm lg:flex-row">
-			<img src="https://source.unsplash.com/640x480/?1" alt="" class="h-80 dark:bg-gray-500 aspect-video"/>
-			<div class="flex flex-col justify-center flex-1 p-6 dark:bg-gray-900">
-				<span class="text-xs uppercase dark:text-gray-400">Join, it's free</span>
-				<h3 class="text-3xl font-bold">We're not reinventing the wheel</h3>
-				<p class="my-6 dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor aliquam possimus quas, error esse quos.</p>
-				<button type="button" class="self-center p-2 rounded hover:bg-yellow-400 hover:text-gray-100 border-yellow-400 border px-4">Book Now</button>
+
+	const [foods] = UseFood()
+	const navigate = useNavigate()
+	const handleNavigateORder = (id) => {
+		navigate(`/foods/${id}`)
+	}
+	return (
+		<div>
+			<h1 className="text-4xl text-white mt-10 font-bold text-center font-mono">
+				Our Food <span className="border-b-4 border-white">Menu</span>
+			</h1>
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-10/12 mx-auto mt-28">
+				{foods.map((item) => {
+					return (
+						<div className="mx-auto mb-20 hover:shadow-md p-10 design hover:shadow-white first:shadow-lg first:shadow-white relative h-[480px]">
+							<img className="w-60 h-60 mb-4" src={item.image} alt="" />
+							<h1 className="text-center text-xl text-white font-semibold">
+								{item.name}
+							</h1>
+							<h1 className="text-center text-xl text-white font-semibold">
+								${item.price}
+							</h1>
+							<button
+								onClick={() => handleNavigateORder(item._id)}
+								className="btn btn-primary text-white text-lg mt-8 capitalize btn-outline border-2 absolute bottom-10 left-24"
+							>
+								Order Now
+							</button>
+						</div>
+					);
+				})}
 			</div>
 		</div>
-		<div class="flex flex-col overflow-hidden rounded-md shadow-sm lg:flex-row-reverse">
-			<img src="https://source.unsplash.com/640x480/?2" alt="" class="h-80 dark:bg-gray-500 aspect-video"/>
-			<div class="flex flex-col justify-center flex-1 p-6 dark:bg-gray-900">
-				<span class="text-xs uppercase dark:text-gray-400">Join, it's free</span>
-				<h3 class="text-3xl font-bold">We're not reinventing the wheel</h3>
-				<p class="my-6 dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor aliquam possimus quas, error esse quos.</p>
-				<button type="button" class="self-center p-2 rounded hover:bg-yellow-400 hover:text-gray-100 border-yellow-400 border px-4">Book Now</button>
-			</div>
-		</div>
-		<div class="flex flex-col overflow-hidden rounded-md shadow-sm lg:flex-row">
-			<img src="https://source.unsplash.com/640x480/?3" alt="" class="h-80 dark:bg-gray-500 aspect-video"/>
-			<div class="flex flex-col justify-center flex-1 p-6 dark:bg-gray-900">
-				<span class="text-xs uppercase dark:text-gray-400">Join, it's free</span>
-				<h3 class="text-3xl font-bold">We're not reinventing the wheel</h3>
-				<p class="my-6 dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor aliquam possimus quas, error esse quos.</p>
-				<button type="button" class="self-center p-2 rounded hover:bg-yellow-400 hover:text-gray-100 border-yellow-400 border px-4">Book Now</button>
-			</div>
-		</div>
-	</div>
-</section>
-        </div>
-    );
+	);
 };
 
 export default FoodsB;

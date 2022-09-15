@@ -36,9 +36,9 @@ const Login = () => {
     }
 
     const onSubmit = data => {
-
         signInWithEmailAndPassword(data.email, data.password);
     }
+    
     return (
         <div>
             <div class="min-h-screen lg:-mt-20 text-gray-100 flex justify-center">

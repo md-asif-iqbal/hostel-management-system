@@ -108,7 +108,7 @@ const NavBar = () => {
                     </label>
                     <ul tabindex="0" class="dropdown-content menu mt-6 p-2 absolute shadow bg-base-100 rounded-box w-52">
                     {
-                      user? <li><Link to="/dashboard">DashBoard</Link></li> :""
+                      user? <li><Link to="/dashbord">DashBoard</Link></li> :""
                     }
                     {
                       user? <li> <button onClick={logout}>Log Out</button> </li> :

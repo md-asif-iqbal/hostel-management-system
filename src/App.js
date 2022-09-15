@@ -11,21 +11,47 @@ import AboutUs from './pages/AboutUs/AboutUs';
 import NotFound from './pages/NotFound/NotFound';
 import Login from './pages/Login&SignUp/Login';
 import SignUp from './pages/Login&SignUp/SignUp';
+import CheckOut from './pages/RoomHome/CheckOut';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import FoodDetails from './pages/FoodsB/FoodDetails';
+import RoomNav from './pages/AllRoomDetails/RoomNav';
+import AllRoom from './pages/AllRoomDetails/AllRoom';
+import SingleRoom from './pages/AllRoomDetails/SingleRoom';
+import DoubleRoom from './pages/AllRoomDetails/DoubleRoom';
+import MultipleRoom from './pages/AllRoomDetails/MultipleRoom';
+import Dashbord from './pages/Dashbord/Dashbord';
+import MyProfile from './pages/Dashbord/MyProfile';
+import MyBooking from './pages/Dashbord/MyBooking';
+import MyMeals from './pages/Dashbord/MyMeals';
 function App() {
   return (
     <div className="App bg-slate-800">
-      <NavBar/>
+      <NavBar />
       <Routes>
-        <Route path='/' element={<Home/>}></Route>
-        <Route path='/home' element={<Home/>}></Route>
-        <Route path='/roomdetails' element={<AllRoomDetails/>}></Route>
-        <Route path='/fooddetails' element={<FoodsB/>}></Route>
-        <Route path='/aboutus' element={<AboutUs/>}></Route>
-        <Route path='/signin' element={<Login/>}></Route>
-        <Route path='/signup' element={<SignUp/>}></Route>
-        <Route path='*' element={<NotFound/>}></Route>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/home' element={<Home />}></Route>
+        <Route path='/roomdetails' element={<RoomNav />}>
+           <Route index element={<AllRoom />}></Route>
+           <Route path='single' element={<SingleRoom />}></Route>
+           <Route path='double' element={<DoubleRoom />}></Route>
+           <Route path='multiple' element={<MultipleRoom />}></Route>
+        </Route>
+        <Route path='/dashbord' element={<Dashbord />}>
+          <Route index element={<MyProfile />}></Route>
+          <Route path='Mybooking' element={<MyBooking />}></Route>
+          <Route path='myMeals' element={<MyMeals />}></Route>
+        </Route>
+        <Route path='/room/:id' element={<CheckOut />}></Route>
+        <Route path='/fooddetails' element={<FoodsB />}></Route>
+        <Route path='/foods/:id' element={<FoodDetails />}></Route>
+        <Route path='/aboutus' element={<AboutUs />}></Route>
+        <Route path='/signin' element={<Login />}></Route>
+        <Route path='/signup' element={<SignUp />}></Route>
+        <Route path='*' element={<NotFound />}></Route>
       </Routes>
       <Footer></Footer>
+      <ToastContainer />
     </div>
   );
 }
