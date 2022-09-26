@@ -61,34 +61,12 @@ const NavBar = () => {
 
             <div className="flex items-center ml-8">
               <div className="flex items-center border-gray-100 divide-x divide-gray-100 border-x">
-                <span>
-                  <a
-                    href="/cart"
-                    className="block p-6 border-b-4 border-transparent hover:border-red-700"
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                      />
-                    </svg>
-
-                    <span className="sr-only">Cart</span>
-                  </a>
-                </span>
+                
 
                 <span>
                   <div
                     
-                    className="block dropdown z-10 relative dropdown-end p-6 border-b-4 border-transparent hover:border-red-700"
+                    className="block dropdown z-50 relative dropdown-end p-6 border-b-4 border-transparent hover:border-red-700"
                   >
                     <label tabindex="0" class="">
                     <svg

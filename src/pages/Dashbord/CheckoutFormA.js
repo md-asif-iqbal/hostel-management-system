@@ -125,13 +125,13 @@ const CheckoutFormA = ({ paymentData }) => {
   return (
     <>
       <form
-        className="p-0"
-        style={{ display: "inline" }}
+        className="p-0 "
+        
         onSubmit={handleSubmit}
       >
         <div className="grid grid-cols-2 gap-5 ">
           <div>
-            <label style={{ fontSize: "20px" }} className="text-secondary ">
+            <label style={{ fontSize: "20px" }} className="text-rose-600 ">
               Email
             </label>
             <input
@@ -143,7 +143,7 @@ const CheckoutFormA = ({ paymentData }) => {
           </div>
           <div>
             <div>
-              <label style={{ fontSize: "20px" }} className="text-secondary ">
+              <label style={{ fontSize: "20px" }} className="text-rose-600 ">
                 Amount
               </label>
               <input
@@ -174,7 +174,7 @@ const CheckoutFormA = ({ paymentData }) => {
         />
 
         <div className="mt-10 mb-5">
-          <button className="btn text-white btn-primary" type="submit" disabled={!stripe}>
+          <button className="btn w-1/2 hover:bg-green-600 hover:border-0 text-white btn-primary" type="submit" disabled={!stripe}>
             Pay
           </button>
         </div>

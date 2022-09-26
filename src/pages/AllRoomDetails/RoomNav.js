@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import {Outlet} from 'react-router-dom';
+import CustomLink from '../../CustomLink/CustomLink';
 
 const RoomNav = () => {
     return (
@@ -42,62 +43,41 @@ const RoomNav = () => {
 
                                 <div class="px-5 py-6 space-y-2 text-gray-100">
                                     <div class="flex items-center">
-                                        <NavLink to="/roomdetails">
-                                            <input
-                                                id="single"
-                                                type="checkbox"
-                                                name="type[Single]"
-                                                class="w-5 h-5 border-gray-300 rounded"
-                                            />
+                                        <CustomLink to="/roomdetails">
+                                            
 
                                             <label for="single" class="ml-3 text-sm font-medium">
                                                 All
                                             </label>
-                                        </NavLink>
+                                        </CustomLink>
                                     </div>
                                     <div class="flex items-center">
-                                        <NavLink to="/roomdetails/single">
-                                            <input
-                                                id="single"
-                                                type="checkbox"
-                                                name="type[Single]"
-                                                class="w-5 h-5 border-gray-300 rounded"
-                                            />
+                                        <CustomLink to="/roomdetails/single">
+                                            
 
                                             <label for="single" class="ml-3 text-sm font-medium">
                                                 Single
                                             </label>
-                                        </NavLink>
+                                        </CustomLink>
                                     </div>
 
                                     <div class="flex items-center">
-                                        <NavLink to="/roomdetails/double">
-                                            <input
-                                                id="double"
-                                                type="checkbox"
-                                                name="type[double]"
-                                                class="w-5 h-5 border-gray-300 rounded"
-                                            />
+                                        <CustomLink to="/roomdetails/double">
+                                            
 
                                             <label for="double" class="ml-3 text-sm font-medium">
                                                 Double
                                             </label>
-                                        </NavLink>
+                                        </CustomLink>
                                     </div>
 
                                     <div class="flex items-center ">
-                                        <NavLink to="/roomdetails/multiple">
-                                            <input
-                                                id="Multiple"
-                                                type="checkbox"
-                                                name="type[double]"
-                                                class="w-5 h-5 border-gray-300 rounded"
-                                            />
-
+                                        <CustomLink to="/roomdetails/multiple">
+                                            
                                             <label for="double" class="ml-3 text-sm font-medium">
                                                 Multiple
                                             </label>
-                                        </NavLink>
+                                        </CustomLink>
                                     </div>
 
                                     <div class="pt-2">

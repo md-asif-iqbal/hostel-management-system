@@ -25,11 +25,20 @@ const Dashbord = () => {
                     <li className="text-secondary text-lg mb-4 w-48">
                         <NavLink to="/dashbord/myMeals">My Meals</NavLink>
                     </li>
+                    <li className="text-secondary text-lg mb-4 w-48">
+                        <NavLink to="/dashbord/addRoom">Add Room</NavLink>
+                    </li>
+                    <li className="text-secondary text-lg mb-4 w-48">
+                        <NavLink to="/dashbord/manageOrders">Manage Order</NavLink>
+                    </li>
+                    <li className="text-secondary text-lg mb-4 w-48">
+                        <NavLink to="/dashbord/manageRooms">Manage Rooms</NavLink>
+                    </li>
                     <li>
                         <div className="avatar ">
-                            <div className="w-20 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 ml-6 mt-10">
+                            <div className="w-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 ml-6 mt-10">
                                 {
-                                    user?.photoURL ? <img src={user?.photoURL} alt={ user?.displayName} className="w-12 p-0 text-primary" /> : <img src="https://i.ibb.co/rwGPsQ9/profile.jpg" alt={user?.displayName} className="w-14 text-primary" />}
+                                    user?.photoURL ? <img src={user?.photoURL} alt={ user?.displayName} className="w-8 p-0 text-primary" /> : <img src="https://i.ibb.co/rwGPsQ9/profile.jpg" alt={user?.displayName} className="w-12 text-primary" />}
                             </div>
                         </div>
                         <h1 className="text-sm ml-6 text-secondary">{user?.displayName}</h1>
