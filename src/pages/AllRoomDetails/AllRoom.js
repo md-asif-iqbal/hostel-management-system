@@ -13,8 +13,9 @@ const AllRoom = () => {
     const handleBookNow = (id) => {
         navigate(`/room/${id}`)
     }
+    // 
     return (
-        <div className=" w-full mx-auto grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 py-8 mt-12">
+        <div className=" w-full mx-auto  grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 py-8 mt-12">
             {
                 room.map(item => (
                     <div class="card w-96 bg-base-100 shadow-xl mx-14  mb-10">
