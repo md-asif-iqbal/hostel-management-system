@@ -9,8 +9,10 @@ const useToken = user =>{
         const currentUser = {
                     email: email,
                     name: name,
+                    
+
         };
-        console.log(currentUser);
+        console.log(currentUser,token);
         if(email){
             fetch(`http://localhost:8000/user/${email}`, {
                 method:'PUT',

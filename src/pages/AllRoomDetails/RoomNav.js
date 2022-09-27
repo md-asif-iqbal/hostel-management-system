@@ -80,105 +80,12 @@ const RoomNav = () => {
                                         </CustomLink>
                                     </div>
 
-                                    <div class="pt-2">
-                                        <button
-                                            type="button"
-                                            class="text-xs text-gray-500 underline"
-                                        >
-                                            Reset Type
-                                        </button>
-                                    </div>
+                        
                                 </div>
                             </fieldset>
 
-                            <div>
-                                <fieldset>
-                                    <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
-                                        Catagory
-                                    </legend>
-
-                                    <div class="px-5 py-6 space-y-2 text-gray-100">
-                                        <div class="flex items-center">
-                                            <input
-                                                id="ac"
-                                                type="checkbox"
-                                                name="age[ac]"
-                                                class="w-5 h-5 border-gray-300 rounded"
-                                            />
-
-                                            <label for="ac" class="ml-3 text-sm font-medium">
-                                                AC
-                                            </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input
-                                                id="non-ac"
-                                                type="checkbox"
-                                                name="age[non-ac]"
-                                                class="w-5 h-5 border-gray-300 rounded"
-                                            />
-
-                                            <label for="non-ac" class="ml-3 text-sm font-medium">
-                                                Non-AC
-                                            </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input
-                                                id="male"
-                                                type="checkbox"
-                                                name="age[male]"
-                                                class="w-5 h-5 border-gray-300 rounded"
-                                            />
-
-                                            <label for="male" class="ml-3 text-sm font-medium">
-                                                Male
-                                            </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input
-                                                id="female"
-                                                type="checkbox"
-                                                name="age[female]"
-                                                class="w-5 h-5 border-gray-300 rounded"
-                                            />
-
-                                            <label for="female" class="ml-3 text-sm font-medium">
-                                                Female
-                                            </label>
-                                        </div>
-
-                                        <div class="pt-2">
-                                            <button
-                                                type="button"
-                                                class="text-xs text-gray-500 underline"
-                                            >
-                                                Reset Catagoris
-                                            </button>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </div>
-
-                            <div class="flex justify-between px-5 py-3 border-t border-gray-200">
-                                <button
-                                    name="reset"
-                                    type="button"
-                                    class="text-xs font-medium text-gray-600 underline rounded"
-                                >
-                                    Reset All
-                                </button>
-
-                                <button
-                                    name="commit"
-                                    type="button"
-                                    class="px-5 py-3 text-xs font-medium text-white bg-green-600 rounded"
-                                >
-                                    Apply Filters
-                                </button>
-                            </div>
+            
+                           
                         </form>
                     </details>
                 </div>

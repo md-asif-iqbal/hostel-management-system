@@ -76,7 +76,7 @@ const FoodDetails = () => {
                             </span>
                             <span className="text-xl mr-2 text-primary font-bold">#Food</span>
                         </p>
-                        <button onClick={() => confirmBooking(order._id)} className='btn btn-primary mt-10'>Order Now</button>
+                        <button onClick={() => confirmBooking(order._id)} className='btn btn-primary mt-10'>Book Now</button>
                     </div>
                 </div>
             </div>

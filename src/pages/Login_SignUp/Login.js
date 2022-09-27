@@ -1,3 +1,4 @@
+import { wait } from '@testing-library/user-event/dist/utils';
 import React, { useEffect } from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
@@ -14,9 +15,9 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
-  
+    const [token] = useToken(user || gUser)
     let signInError;
-    const[token] = useToken(user || gUser)
+  
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
@@ -37,9 +38,9 @@ const Login = () => {
         signInError= <p className='text-red-600'><small>{error?.message || gError?.message }</small></p>
     }
 
-    const onSubmit = data => {
+    const onSubmit = async (data) => {
 
-        signInWithEmailAndPassword(data.email, data.password);
+       await signInWithEmailAndPassword(data.email, data.password);
     }
     return (
         <div>

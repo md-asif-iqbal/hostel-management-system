@@ -51,12 +51,7 @@ const NavBar = () => {
                 About Us
               </Link>
 
-              <a
-                href="/contact"
-                className="block h-16 leading-[4rem] border-b-4 border-transparent hover:text-red-700 hover:border-current"
-              >
-                Contact
-              </a>
+              
             </nav>
 
             <div className="flex items-center ml-8">

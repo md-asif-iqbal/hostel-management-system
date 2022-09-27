@@ -15,7 +15,7 @@ const FAQ = () => {
         className="p-6 border-l-4 border-red-500 bg-primary-content group" open>
         <summary className="flex items-center justify-between cursor-pointer">
           <h5 className="text-lg font-medium text-secondary">
-            How do you keep budgets on track?
+          What is your cancellation and refund policy?
           </h5>
           <span className="flex-shrink-0 ml-1.5 p-1.5 text-secondary bg-primary-content rounded-full sm:p-3">
             <svg
@@ -35,7 +35,7 @@ const FAQ = () => {
 
         <p
           className="mt-4 leading-relaxed text-secondary">
-          We are meticulous about keeping track of everything we need to spend money on. ans :This is done by constant monitoring and updating spreadsheets, knowing where to prioritise spending and keeping aside a budget to cater for emergency contingencies.
+          Cancellation and refund policies differ according to the payment term. If you purchased your subscription it will add to your monthly subscription. Monthly subscription : When cancelling a monthly subscription, all future charges associated with future months of your subscription will be cancelled. You may notify us of your intent to cancel at any time; your cancellation will become effective at the end of your current monthly billing period. You will receive a refund; however your subscription access and/or delivery and accompanying subscriber benefits will continue for the remainder of the current monthly billing period.
         </p>
       </details>
       <details
@@ -45,7 +45,7 @@ const FAQ = () => {
         className="p-6 border-l-4 border-red-500 bg-primary-content group">
         <summary className="flex items-center justify-between cursor-pointer">
           <h5 className="text-lg font-medium text-secondary">
-            What factors do you consider when selecting a venue?
+          How do you keep payment on track?
           </h5>
 
           <span
@@ -67,7 +67,7 @@ const FAQ = () => {
         </summary>
 
         <p className="mt-4 leading-relaxed text-secondary">
-          We consider the size and capacity of venue needed for the number of guests, facilities provided, parking, technical needs and budget constraints. We visit venues to check on the quality of the facilities and liaise with clients, keeping them informed of decisions made.
+        Typically done by steady checking and upgrading spreadsheets, your payment will add in your UCAM payment sheet with your monthly charge.
         </p>
       </details>
 
@@ -78,7 +78,7 @@ const FAQ = () => {
         className="p-6 border-l-4 border-red-500 bg-primary-content group">
         <summary className="flex items-center justify-between cursor-pointer">
           <h5 className="text-lg font-medium text-secondary">
-            What is your refund and cancellation policy?
+          Can I add extra meal for guests or cancel my meal for upcoming days? 
           </h5>
 
           <span
@@ -100,7 +100,7 @@ const FAQ = () => {
         </summary>
 
         <p className="mt-4 leading-relaxed text-secondary">
-          We’re aware that sometimes things happen which are outside of your control. In the event of needing a refund for a cancelled event, do discuss this with your event planner as early as possible, before extra services and products may have been ordered. We will discuss our policies with you before entering into contracts and then liaise with you in the unfortunate event of an event being canceled. We believe it’s important that all parties are aware of their obligations and responsibilities.
+        Yes, you can add any meal for the upcoming days. It will be cost extra charges. And if any subscriber want to cancel their meal you should be notify us one day before by cancelling the you meal!!
         </p>
       </details>
 

@@ -5,8 +5,34 @@ import auth from "../../firebase.init";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { format } from "date-fns";
+import { mockComponent } from "react-dom/test-utils";
 
 const MyMeals = () => {
+  const [date, setDate] = useState(new Date());
+
+  let todays = format(new Date(), "PP");
+  let dat = format(date, "PP");
+  let x = dat.slice(4, 15);
+  let y = todays.slice(4, 15);
+
+  let today = new Date();
+
+  
+
+
+  const dates = format(date, "PP");
+  // console.log(dates);
+  const css = `.my-selected:not([disabled]) { 
+          background: #FB4051;
+          color: white;
+        }.my-selected:hover:not([disabled]) { 
+              background: #FB4051;
+              color: white;
+            }`;
+
+
+
+
   const [counterMoring, setCounterMorning] = useState(1);
   const [user] = useAuthState(auth);
 
@@ -46,14 +72,68 @@ const MyMeals = () => {
     setCounterDinner((count) => count + 1);
   };
 
+  const [meals ,setMeals]= useState([]);
+    const url = `http://localhost:8000/meals`;
+
+    useEffect(() => {
+        fetch(url)
+          .then((res) => res.json())
+          .then((data) => {
+          
+            setMeals(data)
+            filterItems(data);
+          });
+      }, [meals]);
+        
+        // if(isLoading){
+        //     return <Loading/>
+        // }
+        const filterItems = (bookings) => {
+                const updatedItems = bookings.filter((item) => {
+                  return item.email === user.email;
+                });
+                setMeals(updatedItems);
+
+                
+              };
+              
+  // if () {
+  //   const morning = parseInt(counterMoring);
+  //   const lunch = parseInt(counterLunch);
+  //   const dinner = parseInt(counterDinner);
+  //   const email = user.email;
+  //   const name = user.displayName;
+  //   const total = parseInt(morning + lunch + dinner);
+  //   const update = {name, email,morning, lunch, dinner , dates, total };
+  //   console.log(update);
+
+  //   const url = `http://localhost:8000/meals`;
+  //   fetch(url, {
+  //     method: "POST",
+  //     headers: {
+  //       "content-type": "application/json",
+  //     },
+  //     body: JSON.stringify(update),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       toast("Your meal is Updated");
+  //       return 
+  //     });
+  
+  // }
+
   const handleMils = () => {
     const morning = parseInt(counterMoring);
     const lunch = parseInt(counterLunch);
     const dinner = parseInt(counterDinner);
+    const email = user.email;
+    const name = user.displayName;
+    const total = parseInt(morning + lunch + dinner);
+    const update = {name, email,morning, lunch, dinner , dates, total };
+    console.log(update);
 
-    const update = { morning, lunch, dinner , date };
-
-    const url = `http://localhost:8000/meals/${user.email}`;
+    const url = `http://localhost:8000/meals`;
     fetch(url, {
       method: "POST",
       headers: {
@@ -63,45 +143,21 @@ const MyMeals = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        toast("Yes");
+        toast("Your meal is Updated");
       });
   };
 
-  const [date, setDate] = useState(new Date());
-  // console.log(date);
-
-  const [dates, setDates] = useState();
-  // const [selected, setSelected] = useState();
-  const [disable, setDisable] = useState(true);
-  console.log(disable);
-  const today = new Date();
-  const formattedDate = format(date, "PP");
-  const css = `.my-selected:not([disabled]) { 
-          background: #FB4051;
-          color: white;
-        }.my-selected:hover:not([disabled]) { 
-              background: #FB4051;
-              color: white;
-            }`;
-
+  
   let footer = <p>Please pick a day.</p>;
   if (date) {
     footer = <p>You picked {format(date, "PP")}.</p>;
   }
-  let todays = format(new Date(), "PP");
-  let dat = format(date, "PP");
-  let x = dat.slice(4, 15);
-  let y = todays.slice(4, 15);
-  console.log(todays);
+ 
+  // console.log(todays);
 
   //   if( === date){
   //    console.log("yes");
   //   }
-
-  useEffect(() => {
-    console.log({todays})
-
-  }, [todays])
 
   return (
     <div>
@@ -109,48 +165,204 @@ const MyMeals = () => {
         <h1 className="text-2xl text-primary mt-20 font-mono">
           Your Montly Meals
         </h1>
-        <div class="overflow-x-auto">
-          <table class="min-w-full text-xs">
-            <thead class="bg-gray-700">
-              <tr class="text-left">
-                <th class="p-3">Name</th>
-                <th class="p-3">Date</th>
-                <th class="p-3">Moring</th>
-                <th class="p-3">Lunch</th>
-                <th class="p-3 text-right">Dinner</th>
-                <th class="p-3">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="border-b border-opacity-20 border-gray-700 bg-gray-900">
-                <td class="p-3">
-                  <h1 className="text-xl text-primary mt-4">
-                    {user?.displayName}
-                  </h1>
-                </td>
-                <td class="p-3">
-                  <p>Microsoft Corporation</p>
-                </td>
-                <td class="p-3">
-                  <p>14 Jan 2022</p>
-                  <p class="text-gray-400">Friday</p>
-                </td>
-                <td class="p-3">
-                  <p>01 Feb 2022</p>
-                  <p class="text-gray-400">Tuesday</p>
-                </td>
-                <td class="p-3 text-right">
-                  <p>$15,792</p>
-                </td>
-                <td class="p-3 text-right">
-                  <span class="px-3 py-1 font-semibold rounded-md bg-violet-400 text-gray-900">
-                    <span>Pending</span>
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <section class="bg-black ">
+   <div class="container">
+      <div class="flex flex-wrap -mx-4">
+         <div class="w-auto px-4">
+            <div class="overflow-x-auto">
+               <table class="table-auto">
+                  <thead>
+                     <tr class="bg-primary text-center">
+                        <th
+                           class="
+                           w-1/6
+                           min-w-[160px]
+                           text-lg
+                           font-semibold
+                           text-white
+                           py-4
+                           lg:py-7
+                           px-3
+                           lg:px-4
+                           border-l border-transparent
+                           "
+                           >
+                           Name
+                        </th>
+                        <th
+                           class="
+                           w-1/6
+                           min-w-[160px]
+                           text-lg
+                           font-semibold
+                           text-white
+                           py-4
+                           lg:py-7
+                           px-3
+                           lg:px-4
+                           "
+                           >
+                           Date
+                        </th>
+                        <th
+                           class="
+                           w-1/6
+                           min-w-[160px]
+                           text-lg
+                           font-semibold
+                           text-white
+                           py-4
+                           lg:py-7
+                           px-3
+                           lg:px-4
+                           "
+                           >
+                          Moring
+                        </th>
+                        <th
+                           class="
+                           w-1/6
+                           min-w-[160px]
+                           text-lg
+                           font-semibold
+                           text-white
+                           py-4
+                           lg:py-7
+                           px-3
+                           lg:px-4
+                           "
+                           >
+                           Lunch
+                        </th>
+                        <th
+                           class="
+                           w-1/6
+                           min-w-[160px]
+                           text-lg
+                           font-semibold
+                           text-white
+                           py-4
+                           lg:py-7
+                           px-3
+                           lg:px-4
+                           "
+                           >
+                            Dinner
+                        </th>
+                        <th
+                           class="
+                           w-1/6
+                           min-w-[160px]
+                           text-lg
+                           font-semibold
+                           text-white
+                           py-4
+                           lg:py-7
+                           px-3
+                           lg:px-4
+                           border-r border-transparent
+                           "
+                           >
+                           Total
+                        </th>
+                     </tr>
+                  </thead>
+                  {
+                meals.map(item => ( 
+                  <tbody>
+                  <tr>
+                     <td
+                        class="
+                        text-center text-black
+                        font-medium
+                        text-base
+                        py-5
+                        px-2
+                        bg-[#F3F6FF]
+                        border-b border-l border-[#E8E8E8]
+                        "
+                        >
+                        {item.name}
+                     </td>
+                     <td
+                        class="
+                        text-center text-black
+                        font-medium
+                        text-base
+                        py-5
+                        px-2
+                        bg-white
+                        border-b border-[#E8E8E8]
+                        "
+                        >
+                        {item.dates}
+                     </td>
+                     <td
+                        class="
+                        text-center text-black
+                        font-medium
+                        text-base
+                        py-5
+                        px-2
+                        bg-[#F3F6FF]
+                        border-b border-[#E8E8E8]
+                        "
+                        >
+                        {item.morning}
+                     </td>
+                     <td
+                        class="
+                        text-center text-black
+                        font-medium
+                        text-base
+                        py-5
+                        px-2
+                        bg-white
+                        border-b border-[#E8E8E8]
+                        "
+                        >
+                        {item.lunch}
+                     </td>
+                     <td
+                        class="
+                        text-center text-black
+                        font-medium
+                        text-base
+                        py-5
+                        px-2
+                        bg-[#F3F6FF]
+                        border-b border-[#E8E8E8]
+                        "
+                        >
+                        {item.dinner}
+                     </td>
+                     <td
+                        class="
+                        text-center text-black
+                        font-medium
+                        text-base
+                        py-5
+                        px-2
+                        bg-white
+                        border-b border-r border-[#E8E8E8]
+                        "
+                        >
+                        {item.total}
+                  
+                     </td>
+                  </tr>
+                
+                 
+               </tbody>
+                ))}
+
+                 
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
       </div>
       <div>
         <div className="grid grid-cols-2 md:grid-cols-4 mt-8">
@@ -218,7 +430,6 @@ const MyMeals = () => {
             mode="single"
             selected={date}
             onSelect={setDate}
-            onDayClick={setDates}
             disabled={{ before: today }}
             footer={footer}
             modifiersClassNames={{
@@ -234,56 +445,3 @@ const MyMeals = () => {
 };
 
 export default MyMeals;
-
-{
-  /* <div>
-            <h1 className='text-2xl text-primary mt-20 font-mono'>Your Montly Meals</h1>
-            <div className='grid grid-cols-2 md:grid-cols-4 mt-8'>
-                <div className='flex flex-col'>
-                    <h1 className='text-lg text-white'>Name</h1>
-                    <h1 className='text-xl text-primary mt-4'>{user?.displayName}</h1>
-                </div>
-                <div className='flex flex-col'>
-                    <h1 className='text-lg text-white'>Morning</h1>
-                    <div className="flex gap-2 items-center mx-auto mt-4">
-                        <button className="btn btn-primary" onClick={increaseMorning}> <span>+</span> </button>
-                        <span className="text-2xl text-white">{counterMoring}</span>
-                        <button className="btn btn-primary" onClick={decreaseMoring}>-</button>
-                    </div>
-                </div>
-                <div className='flex flex-col'>
-                    <h1 className='text-lg text-white'>Lunch</h1>
-                    <div className="flex gap-2 items-center mx-auto mt-4">
-                        <button className="btn btn-primary" onClick={increaseLunch}>+</button>
-                        <span className="text-2xl text-white">{counterLunch}</span>
-                        <button className="btn btn-primary" onClick={decreaseLunch}>-</button>
-                    </div>
-                </div>
-                <div className='flex flex-col'>
-                    <h1 className='text-lg text-white'>Dinner</h1>
-                    <div className="flex gap-2 items-center mx-auto mt-4">
-                        <button className="btn btn-primary" onClick={increaseDinner}>+</button>
-                        <span className="text-2xl text-white">{counterDinner}</span>
-                        <button className="btn btn-primary" onClick={decreaseDinner}>-</button>
-                    </div>
-                </div>
-
-            </div>
-            <button onClick={handleMils} className='btn btn-primary text-xl mt-20'>Save</button>
-            <div className="max-w-md bg-green-200">
-                <style>{css}</style>
-                <DayPicker
-                    mode="single"
-                    selected={date}
-                    onSelect={setDate}
-                    onDayClick={setDates}
-                    disabled={{ before: new Date() }}
-                    footer={footer}
-                    modifiersClassNames={{
-                        selected: "my-selected",
-                        today: "my-today",
-                    }}
-                />
-            </div>
-        </div> */
-}

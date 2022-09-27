@@ -1,5 +1,5 @@
-import React from 'react';
-import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import React, { useState } from 'react';
+import {useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 
 
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,33 +9,39 @@ import { useForm } from 'react-hook-form';
 import useToken from '../../Hooks/useToken';
 
 const SignUp = () => {
-  const [token] = useToken(user || gUser)
+  const [users,setUsers]= useState('');
   const { register, handleSubmit, formState: { errors } } = useForm();
   var signInError;
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-
   const [
     createUserWithEmailAndPassword,
     user,
     loading,
     error,
-] = useCreateUserWithEmailAndPassword(auth);
+  ] = useCreateUserWithEmailAndPassword(auth);
+
+const [token] = useToken(user || gUser)
 const navigate = useNavigate();
-  if (error || gError ) {
-    signInError = <p className='text-red-500'><small>{error?.message || gError?.message}</small></p>
-}
-if (token) {
- navigate('/')
-}
+console.log(user);
 if (loading || gLoading) {
   return <Loading></Loading>
 }
+
+  if (error || gError ) {
+    signInError = <p className='text-red-500'><small>{error?.message || gError?.message}</small></p>
+}
+
+
+
 const onSubmit = async data => {
   await createUserWithEmailAndPassword(data.email, data.password);
-  console.log(data);
+  
   navigate('/');
 }
 
+if (token) {
+  navigate('/')
+ }
     return (
         <div>
             <div class="min-h-screen lg:-mt-20 text-gray-100 flex justify-center">
@@ -96,8 +102,8 @@ const onSubmit = async data => {
             <div class="mx-auto max-w-xs">
               <form onSubmit={handleSubmit(onSubmit)}>
               <input
-                class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                type="email"
+                class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none text-black focus:border-gray-400 focus:bg-white"
+                type="text"
                 placeholder="Name"
                 {...register("name", {
                   required: {
@@ -108,7 +114,7 @@ const onSubmit = async data => {
                 
               />
               <input
-                class="w-full px-8 py-4 mt-5 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                class="w-full px-8 py-4 mt-5 rounded-lg font-medium bg-gray-100 border text-black border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                 type="email"
                 placeholder="Email"
                 {...register("email", {
@@ -129,7 +135,7 @@ const onSubmit = async data => {
                             </label>
               
               <input
-                class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none text-black focus:border-gray-400 focus:bg-white mt-5"
                 type="password"
                 placeholder="Password"
                 {...register("password", {

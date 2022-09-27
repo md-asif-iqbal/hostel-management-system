@@ -63,8 +63,8 @@ const ManageRoom = () => {
                 </div>
             </div>
             </td>
-            <td>{products.name}</td>
-            <td>${products.price}</td>
+            <td>{products.room}</td>
+            <td>{products.price}</td>
             <td>
             <label onClick={() => setDeletes(products)} htmlFor="delete-confirm-modal" className="btn btn-md bg-white text-black hover:bg-rose-600 hover:border-0 hover:text-white">Delete</label>
             </td>

@@ -27,6 +27,7 @@ const CheckOut = () => {
             name: roomId.name,
             img: roomId.img,
             price: roomId.price,
+            categori: roomId.gender,
         };
         fetch("http://localhost:8000/booking", {
             method: "POST",
@@ -57,16 +58,19 @@ const CheckOut = () => {
             Please <span className="border-b-4 border-primary">Order</span>
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 items-center">
-            <div>
-                <img src={roomId.img} alt="" />
+            <div >
+                <img src={roomId.img} className="w-3/4 rounded" alt="" />
             </div>
             <div>
-                <div className="text-secondary">
+                <div className="text-secondary   text-start">
                     <h1 className="text-4xl font-semibold pt-2 text-white">
-                        {roomId.name} Bed
+                        {roomId.room}
                     </h1>
-                    <p className="text-2xl font-semibold text-white pt-2">Price: ${roomId.price}</p>
-                    <button onClick={confirmBooking} className='btn btn-primary mt-10'>Order Now</button>
+                    <p className="text-sm font-semibold text-white pt-2">Type: {roomId.type}</p>
+                    <p className="text-sm  text-white pt-2">Gender: {roomId.gender}</p>
+                    <p className="text-sm  text-white pt-2">Details: {roomId.details}</p>
+                    <p className="text-sm  text-white pt-2">Price: {roomId.price}</p>
+                    <button onClick={confirmBooking} className='btn btn-primary mt-10'>Book Now</button>
                 </div>
             </div>
         </div>
