@@ -17,9 +17,6 @@ const MyMeals = () => {
 
   let today = new Date();
 
-  
-
-
   const dates = format(date, "PP");
   // console.log(dates);
   const css = `.my-selected:not([disabled]) { 
@@ -29,9 +26,6 @@ const MyMeals = () => {
               background: #FB4051;
               color: white;
             }`;
-
-
-
 
   const [counterMoring, setCounterMorning] = useState(1);
   const [user] = useAuthState(auth);
@@ -72,31 +66,28 @@ const MyMeals = () => {
     setCounterDinner((count) => count + 1);
   };
 
-  const [meals ,setMeals]= useState([]);
-    const url = `http://localhost:8000/meals`;
+  const [meals, setMeals] = useState([]);
+  const url = `https://uiu-hostel-management.herokuapp.com/meals`;
 
-    useEffect(() => {
-        fetch(url)
-          .then((res) => res.json())
-          .then((data) => {
-          
-            setMeals(data)
-            filterItems(data);
-          });
-      }, [meals]);
-        
-        // if(isLoading){
-        //     return <Loading/>
-        // }
-        const filterItems = (bookings) => {
-                const updatedItems = bookings.filter((item) => {
-                  return item.email === user.email;
-                });
-                setMeals(updatedItems);
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setMeals(data);
+        filterItems(data);
+      });
+  }, [meals]);
 
-                
-              };
-              
+  // if(isLoading){
+  //     return <Loading/>
+  // }
+  const filterItems = (bookings) => {
+    const updatedItems = bookings.filter((item) => {
+      return item.email === user.email;
+    });
+    setMeals(updatedItems);
+  };
+
   // if () {
   //   const morning = parseInt(counterMoring);
   //   const lunch = parseInt(counterLunch);
@@ -107,7 +98,7 @@ const MyMeals = () => {
   //   const update = {name, email,morning, lunch, dinner , dates, total };
   //   console.log(update);
 
-  //   const url = `http://localhost:8000/meals`;
+  //   const url = `https://uiu-hostel-management.herokuapp.com/meals`;
   //   fetch(url, {
   //     method: "POST",
   //     headers: {
@@ -118,9 +109,9 @@ const MyMeals = () => {
   //     .then((res) => res.json())
   //     .then((data) => {
   //       toast("Your meal is Updated");
-  //       return 
+  //       return
   //     });
-  
+
   // }
 
   const handleMils = () => {
@@ -130,10 +121,10 @@ const MyMeals = () => {
     const email = user.email;
     const name = user.displayName;
     const total = parseInt(morning + lunch + dinner);
-    const update = {name, email,morning, lunch, dinner , dates, total };
+    const update = { name, email, morning, lunch, dinner, dates, total };
     console.log(update);
 
-    const url = `http://localhost:8000/meals`;
+    const url = `https://uiu-hostel-management.herokuapp.com/meals`;
     fetch(url, {
       method: "POST",
       headers: {
@@ -147,12 +138,11 @@ const MyMeals = () => {
       });
   };
 
-  
   let footer = <p>Please pick a day.</p>;
   if (date) {
     footer = <p>You picked {format(date, "PP")}.</p>;
   }
- 
+
   // console.log(todays);
 
   //   if( === date){
@@ -166,15 +156,15 @@ const MyMeals = () => {
           Your Montly Meals
         </h1>
         <section class="bg-black ">
-   <div class="container">
-      <div class="flex flex-wrap -mx-4">
-         <div class="w-auto px-4">
-            <div class="overflow-x-auto">
-               <table class="table-auto">
-                  <thead>
-                     <tr class="bg-primary text-center">
+          <div class="container">
+            <div class="flex flex-wrap -mx-4">
+              <div class="w-auto px-4">
+                <div class="overflow-x-auto">
+                  <table class="table-auto">
+                    <thead>
+                      <tr class="bg-primary text-center">
                         <th
-                           class="
+                          class="
                            w-1/6
                            min-w-[160px]
                            text-lg
@@ -186,11 +176,11 @@ const MyMeals = () => {
                            lg:px-4
                            border-l border-transparent
                            "
-                           >
-                           Name
+                        >
+                          Name
                         </th>
                         <th
-                           class="
+                          class="
                            w-1/6
                            min-w-[160px]
                            text-lg
@@ -201,11 +191,11 @@ const MyMeals = () => {
                            px-3
                            lg:px-4
                            "
-                           >
-                           Date
+                        >
+                          Date
                         </th>
                         <th
-                           class="
+                          class="
                            w-1/6
                            min-w-[160px]
                            text-lg
@@ -216,11 +206,11 @@ const MyMeals = () => {
                            px-3
                            lg:px-4
                            "
-                           >
+                        >
                           Moring
                         </th>
                         <th
-                           class="
+                          class="
                            w-1/6
                            min-w-[160px]
                            text-lg
@@ -231,11 +221,11 @@ const MyMeals = () => {
                            px-3
                            lg:px-4
                            "
-                           >
-                           Lunch
+                        >
+                          Lunch
                         </th>
                         <th
-                           class="
+                          class="
                            w-1/6
                            min-w-[160px]
                            text-lg
@@ -246,11 +236,11 @@ const MyMeals = () => {
                            px-3
                            lg:px-4
                            "
-                           >
-                            Dinner
+                        >
+                          Dinner
                         </th>
                         <th
-                           class="
+                          class="
                            w-1/6
                            min-w-[160px]
                            text-lg
@@ -262,17 +252,16 @@ const MyMeals = () => {
                            lg:px-4
                            border-r border-transparent
                            "
-                           >
-                           Total
+                        >
+                          Total
                         </th>
-                     </tr>
-                  </thead>
-                  {
-                meals.map(item => ( 
-                  <tbody>
-                  <tr>
-                     <td
-                        class="
+                      </tr>
+                    </thead>
+                    {meals.map((item) => (
+                      <tbody>
+                        <tr>
+                          <td
+                            class="
                         text-center text-black
                         font-medium
                         text-base
@@ -281,11 +270,11 @@ const MyMeals = () => {
                         bg-[#F3F6FF]
                         border-b border-l border-[#E8E8E8]
                         "
-                        >
-                        {item.name}
-                     </td>
-                     <td
-                        class="
+                          >
+                            {item.name}
+                          </td>
+                          <td
+                            class="
                         text-center text-black
                         font-medium
                         text-base
@@ -294,11 +283,11 @@ const MyMeals = () => {
                         bg-white
                         border-b border-[#E8E8E8]
                         "
-                        >
-                        {item.dates}
-                     </td>
-                     <td
-                        class="
+                          >
+                            {item.dates}
+                          </td>
+                          <td
+                            class="
                         text-center text-black
                         font-medium
                         text-base
@@ -307,11 +296,11 @@ const MyMeals = () => {
                         bg-[#F3F6FF]
                         border-b border-[#E8E8E8]
                         "
-                        >
-                        {item.morning}
-                     </td>
-                     <td
-                        class="
+                          >
+                            {item.morning}
+                          </td>
+                          <td
+                            class="
                         text-center text-black
                         font-medium
                         text-base
@@ -320,11 +309,11 @@ const MyMeals = () => {
                         bg-white
                         border-b border-[#E8E8E8]
                         "
-                        >
-                        {item.lunch}
-                     </td>
-                     <td
-                        class="
+                          >
+                            {item.lunch}
+                          </td>
+                          <td
+                            class="
                         text-center text-black
                         font-medium
                         text-base
@@ -333,11 +322,11 @@ const MyMeals = () => {
                         bg-[#F3F6FF]
                         border-b border-[#E8E8E8]
                         "
-                        >
-                        {item.dinner}
-                     </td>
-                     <td
-                        class="
+                          >
+                            {item.dinner}
+                          </td>
+                          <td
+                            class="
                         text-center text-black
                         font-medium
                         text-base
@@ -346,23 +335,18 @@ const MyMeals = () => {
                         bg-white
                         border-b border-r border-[#E8E8E8]
                         "
-                        >
-                        {item.total}
-                  
-                     </td>
-                  </tr>
-                
-                 
-               </tbody>
-                ))}
-
-                 
-               </table>
+                          >
+                            {item.total}
+                          </td>
+                        </tr>
+                      </tbody>
+                    ))}
+                  </table>
+                </div>
+              </div>
             </div>
-         </div>
-      </div>
-   </div>
-</section>
+          </div>
+        </section>
       </div>
       <div>
         <div className="grid grid-cols-2 md:grid-cols-4 mt-8">

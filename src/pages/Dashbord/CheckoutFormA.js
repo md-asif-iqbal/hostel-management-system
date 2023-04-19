@@ -5,7 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import Loading from "../shared/Loading/Loading";
 const CheckoutFormA = ({ paymentData }) => {
-  console.log(paymentData)
+  console.log(paymentData);
   const [user] = useAuthState(auth);
   const stripe = useStripe();
   const elements = useElements();
@@ -16,19 +16,16 @@ const CheckoutFormA = ({ paymentData }) => {
   const [transactionId, setTransactionId] = useState("");
   const [email, setEmail] = useState("");
 
-  let amount = paymentData?.price
+  let amount = paymentData?.price;
   useEffect(() => {
     if (amount) {
-      fetch(
-        "http://localhost:8000/create-payment-intent",
-        {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({ amount }),
-        }
-      )
+      fetch("https://hostel-system.onrender.com/create-payment-intent", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ amount }),
+      })
         .then((res) => res.json())
         .then((data) => {
           // console.log(data)
@@ -93,25 +90,21 @@ const CheckoutFormA = ({ paymentData }) => {
       setSuccess("");
       setProcessing(false);
     } else {
-      const status = "paid"
-      const update = { status }
-      const url = `http://localhost:8000/orders/paid/${paymentData._id}`
+      const status = "paid";
+      const update = { status };
+      const url = `https://hostel-system.onrender.com/orders/paid/${paymentData._id}`;
       fetch(url, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'content-type': 'application/json'
-
+          "content-type": "application/json",
         },
-        body: JSON.stringify(update)
-
+        body: JSON.stringify(update),
       })
-
-        .then(res => res.json())
-        .then(data => {
-          console.log('success', data);
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("success", data);
           // alert('Quantity updated successfully');
-
-        })
+        });
       setCardError("");
       setTransactionId(paymentIntent.id);
       console.log(paymentIntent);
@@ -120,23 +113,20 @@ const CheckoutFormA = ({ paymentData }) => {
       setProcessing(false);
       event.target.reset();
     }
-  }
+  };
 
   return (
     <>
-      <form
-        className="p-0 "
-        
-        onSubmit={handleSubmit}
-      >
+      <form className="p-0 " onSubmit={handleSubmit}>
         <div className="grid grid-cols-2 gap-5 ">
           <div>
             <label style={{ fontSize: "20px" }} className="text-rose-600 ">
               Email
             </label>
             <input
-
-              type="email" defaultValue={user?.email} readOnly
+              type="email"
+              defaultValue={user?.email}
+              readOnly
               placeholder="Your Email Address"
               className="border-rounded border-2 text-primary text-xl bg-transparent border-primary rounded-lg my-3 input-md  w-full max-w-2xl block "
             />
@@ -147,9 +137,9 @@ const CheckoutFormA = ({ paymentData }) => {
                 Amount
               </label>
               <input
-
                 type="number"
-                defaultValue={paymentData?.price} readOnly
+                defaultValue={paymentData?.price}
+                readOnly
                 placeholder="Amount"
                 className="border-rounded border-2 bg-transparent border-primary rounded-lg text-xl  my-3 input-md  w-full max-w-2xl block text-primary"
               />
@@ -174,15 +164,20 @@ const CheckoutFormA = ({ paymentData }) => {
         />
 
         <div className="mt-10 mb-5">
-          <button className="btn w-1/2 hover:bg-green-600 hover:border-0 text-white btn-primary" type="submit" disabled={!stripe}>
+          <button
+            className="btn w-1/2 hover:bg-green-600 hover:border-0 text-white btn-primary"
+            type="submit"
+            disabled={!stripe}
+          >
             Pay
           </button>
         </div>
       </form>
 
       {processing && (
-        <div className="mx-auto"><Loading /></div>
-
+        <div className="mx-auto">
+          <Loading />
+        </div>
       )}
       {cardError && <p style={{ color: "red" }}>{cardError}</p>}
       {success && (
@@ -194,7 +189,6 @@ const CheckoutFormA = ({ paymentData }) => {
           </p>
         </div>
       )}
-
     </>
   );
 };

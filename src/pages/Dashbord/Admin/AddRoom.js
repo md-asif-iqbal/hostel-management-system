@@ -31,9 +31,8 @@ const AddRoom = () => {
             gender: data.gender,
             details: data.details,
             img: img,
-            
           };
-          fetch("http://localhost:8000/room", {
+          fetch("https://hostel-system.onrender.com/room", {
             method: "POST",
             headers: {
               "content-type": "application/json",
