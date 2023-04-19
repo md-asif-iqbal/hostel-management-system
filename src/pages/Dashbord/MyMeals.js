@@ -67,7 +67,7 @@ const MyMeals = () => {
   };
 
   const [meals, setMeals] = useState([]);
-  const url = `https://uiu-hostel-management.herokuapp.com/meals`;
+  const url = `https://hostel-system.onrender.com/meals`;
 
   useEffect(() => {
     fetch(url)
@@ -98,7 +98,7 @@ const MyMeals = () => {
   //   const update = {name, email,morning, lunch, dinner , dates, total };
   //   console.log(update);
 
-  //   const url = `https://uiu-hostel-management.herokuapp.com/meals`;
+  //   const url = `https://hostel-system.onrender.com/meals`;
   //   fetch(url, {
   //     method: "POST",
   //     headers: {
@@ -124,7 +124,7 @@ const MyMeals = () => {
     const update = { name, email, morning, lunch, dinner, dates, total };
     console.log(update);
 
-    const url = `https://uiu-hostel-management.herokuapp.com/meals`;
+    const url = `https://hostel-system.onrender.com/meals`;
     fetch(url, {
       method: "POST",
       headers: {
